@@ -13,7 +13,7 @@ argument-hint: [目标目录，默认当前目录] [--lite 轻量环境] [--no-v
 
 1. 跳过第 2/4/5 步的数据脚手架（AGENTS.md、registry、概念卡均已同步，只读不改）
 2. 只重建框架层：执行第 3 步（Python 3.12 检测）与第 6 步（.zcode/tools 环境）与第 7 步（MCP 配置）
-3. git 接续（若本机无 `.git`）：`git init`；若用户提供私有远端 URL：`git remote add origin <url> && git fetch && git reset --mixed origin/main`（采纳远端历史，不动工作区文件）
+3. git 不设（默认）：Obsidian Sync 是数据同步与历史的唯一通道，双通道会打架。仅当用户明确要独立冷备时才 `git init` + 远端
 4. 校验：对照 registry.md 逐条检查 library/ 目录与笔记在不在、PDF 是否已同步完（Obsidian Sync 大文件后到，缺 PDF 属正常，等同步即可）；汇报缺口
 5. Obsidian：提示「打开文件夹作为仓库」（若本机尚未注册）
 
@@ -84,7 +84,6 @@ bash <技能包>/scripts/setup_env.sh --full|--lite --dir <工作区>     # POSI
 
 `--no-vault` 跳过本步（不影响其他流程）。
 
-## 9. git 与收尾
+## 9. 收尾
 
-1. `git init`（若尚未）+ 初始提交
-2. 汇报：数据层清单 / `.zcode` 框架层就绪情况 / MCP 落盘 / Obsidian 注册状态 / 下一步（`/paper-find <你的第一个主题>`）
+汇报：数据层清单 / `.zcode` 框架层就绪情况 / MCP 落盘 / Obsidian 注册状态 / 下一步（`/paper-find <你的第一个主题>`）

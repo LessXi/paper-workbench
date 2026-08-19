@@ -26,5 +26,5 @@ library/<论文目录>/   YYYY-短slug：paper.pdf / paper.md / images/ / 论文
 
 ## 同步与版本
 
-- Obsidian Sync 同步全部明面数据；`.zcode/`、`.git` 点开头自动不被同步
-- git 入库：笔记、registry、refs.bib、综述、自写复现代码；不入库：PDF、images/、.venv、缓存
+- Obsidian Sync 是数据的**唯一**同步与历史通道（自带文件版本历史）；`.zcode/` 点开头不被同步，换机由 /paper-init 恢复模式重建
+- 数据层不设 git（单通道原则：一个文件一条通道）；框架层的版本与分发由 paper-workbench 的 GitHub 仓库负责
