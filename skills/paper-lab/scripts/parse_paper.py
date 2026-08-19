@@ -29,6 +29,17 @@ def log(msg: str) -> None:
 
 
 def run_mineru(pdf: str, paper_dir: str) -> int:
+    import importlib.util
+
+    if importlib.util.find_spec("mineru") is None:
+        pip_py = os.path.join(VENV_BIN, "python.exe")
+        if not os.path.exists(pip_py):
+            pip_py = "python"
+        log("当前是 lite 环境（未装 MinerU），无法做公式/表格/图表级解析。")
+        log(f'升级只需一条命令，之后重跑本命令即可：\n  {pip_py} -m pip install "mineru[pipeline]" six')
+        log("现在只要纯文本稿的话，加 --engine fast 运行。")
+        return 1
+
     out_dir = os.path.join(paper_dir, "_mineru_out")
     mineru_bin = os.path.join(VENV_BIN, "mineru.exe")
     if not os.path.exists(mineru_bin):

@@ -5,9 +5,9 @@
 ## 本工作区参数（/paper-init 生成）
 
 ```yaml
-research_fields: {{RESEARCH_FIELDS}}   # 研究方向：检索换词、精读侧重、关联分析都以它为准
+research_fields: AI/ML   # 默认值，可随时改；AI 从对话中观察到实际方向也会顺手更新（检索换词、精读侧重以它为准）
 python312: {{PYTHON312}}               # uv 托管 Python 3.12 绝对路径，建 venv 用
-解析环境: .zcode/tools/.venv           # Python 3.12 + mineru（标准 venv + pip）
+解析环境: .zcode/tools/.venv（档位：{{ENV_MODE}}）   # lite=纯文本抽取；full=公式/表格/图完整；升级见技能包 environment-notes
 复现环境: .zcode/tools/envs/<论文目录>/.venv
 ```
 

@@ -9,30 +9,27 @@ find   read   parse  learn  vault  repro  survey
 
 特色是**学习模式**（/paper-learn）：AI 不代读——只做导读地图、答疑、复述纠错、闭卷出题、code review，公式和代码过你自己的脑子。
 
-## 一键安装（双环境）
+## 安装
+
+**方式一：插件市场（推荐，零终端）**——ZCode/Claude Code：设置 → 插件管理 → Discover → **+** 从 GitHub 添加 `https://github.com/LessXi/paper-workbench` → 安装。装完重开会话。
+
+**方式二：一条命令（terminal 用户 / DeepSeek Harness）**
 
 ```bash
-git clone <本仓库> && cd paper-workbench
-bash install.sh          # Windows 用: powershell -ExecutionPolicy Bypass -File install.ps1
+curl -LsSf https://raw.githubusercontent.com/LessXi/paper-workbench/main/bootstrap.sh | bash
+# Windows: powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/LessXi/paper-workbench/main/bootstrap.ps1 | iex"
 ```
 
-安装器自动检测并装配：
+（备选：`git clone` 本仓库后跑 `install.sh` / `install.ps1`）
 
-| 环境 | 落点 | 入口 |
-|---|---|---|
-| ZCode | `~/.zcode/commands/`（9 个斜杠命令）+ `~/.agents/skills/paper-lab/` | `/paper-init` |
-| DeepSeek Harness | `~/.dsh/skills/paper-lab/`（skill 形态） | 对话说"初始化论文工作台" |
-| Claude Code | 同 ZCode 路径（`.claude` 生态兼容） | `/paper-init` |
-
-也可通过 ZCode/Claude 插件市场添加本仓库（`.claude-plugin/` 双清单）。
-
-## 三步跑通
+## 两步跑通
 
 ```text
-1. /paper-init            ← 在任意空目录生成工作台（目录树+AGENTS+台账+解析环境+MCP+可选Obsidian库）
-2. /paper-find <你的主题>   ← 多源检索 → 分档初筛 → 下载落库
-3. /paper-learn <论文>     ← 学习模式：导读地图 → 你读你复述 → AI 纠错出题 → 你写复现 AI review
+1. 插件装好，重开会话，在任意目录说 /paper-init   ← 生成你的工作台（只问一个问题：解析环境 lite 还是 full）
+2. /paper-find <你的主题>                        ← 检索落库，开始研读
 ```
+
+解析环境两档：**lite** 秒级装完（纯文本抽取，够筛选）；**full** 公式还原 LaTeX、表格成表、抽全部图表（精读必备），首次多等十来分钟。lite 随时可升级 full（一条 pip 命令，parse_paper.py 会在需要时提示你）。
 
 ## 九个命令
 

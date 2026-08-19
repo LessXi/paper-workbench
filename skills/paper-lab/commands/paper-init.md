@@ -12,7 +12,7 @@ argument-hint: [目标目录，默认当前目录] [--lite 轻量环境] [--no-v
 目标目录已有 `registry.md` 且 `library/` 里有论文目录 → **恢复模式**（工作区数据已由 Obsidian Sync 带到本机）：
 
 1. 跳过第 2/4/5 步的数据脚手架（AGENTS.md、registry、概念卡均已同步，只读不改）
-2. 只重建框架层：执行第 3 步（Python 3.12 检测）与第 6 步（.zcode/tools 环境）与第 7 步（MCP 配置）
+2. 只重建框架层：执行第 3 步（Python 3.12 检测，含 uv 自动安装）与第 6 步（.zcode/tools 环境，档位按 AGENTS.md 参数区记录重建）与第 7 步（MCP 配置）
 3. git 不设（默认）：Obsidian Sync 是数据同步与历史的唯一通道，双通道会打架。仅当用户明确要独立冷备时才 `git init` + 远端
 4. 校验：对照 registry.md 逐条检查 library/ 目录与笔记在不在、PDF 是否已同步完（Obsidian Sync 大文件后到，缺 PDF 属正常，等同步即可）；汇报缺口
 5. Obsidian：提示「打开文件夹作为仓库」（若本机尚未注册）
@@ -22,7 +22,11 @@ argument-hint: [目标目录，默认当前目录] [--lite 轻量环境] [--no-v
 ## 1. 确认目标（初始化模式）
 
 - 目录默认当前目录；非空时列出已有内容并**征得确认**才继续（只新增不覆盖同名文件，遇同名先问）
-- 参数：`--lite` 装轻量解析环境（秒级，仅 fast 引擎）；默认 `--full`（含 MinerU，模型首次解析时下载）
+- **唯一需要问用户的问题：解析环境档位**（用户已显式传 `--lite`/`--full` 则不问），问法带一句权衡：
+
+  > 解析环境装哪档？lite——秒级装完，纯文本抽取，够筛选论文；full——公式还原成 LaTeX、表格成表、抽全部图表（精读必备），但首次安装加模型下载要多等十来分钟。以后随时可从 lite 升级 full。
+
+  用户犹豫就推荐：先 lite，反正能升级。选定后记入 AGENTS.md 参数区（恢复模式沿用）。
 
 ## 2. 建骨架（数据层，明面目录）
 
@@ -36,15 +40,15 @@ mkdir: inbox/ library/ topics/ 概念卡/ 方法图谱/
 uv python find 3.12 || uv python install 3.12 && uv python find 3.12
 ```
 
-- 记下绝对路径（写进 AGENTS.md）。无 uv → 提示安装 uv 后重跑，或用本机任何 ≥3.10 的 python 路径代替
+- **uv 缺失时自动安装，不劳用户**：Windows 跑 `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`；POSIX 跑 `curl -LsSf https://astral.sh/uv/install.sh | sh`，装完重试（PATH 可能需新开 shell 生效，脚本内可加绝对路径兜底）。仍失败才提示用户手动装后重跑
 - 红线：不使用系统专用 python（如固件工具链）
 
 ## 4. 写薄 AGENTS.md
 
-按 `templates/workspace-AGENTS.md` 渲染（只含：一句话定位、参数区、数据目录、机器环境事实、同步与版本策略）。占位符向用户询问给默认值：
+按 `templates/workspace-AGENTS.md` 渲染（只含：一句话定位、参数区、数据目录、机器环境事实、同步与版本策略）。**不问研究方向**——默认 `AI/ML` 写入，AGENTS.md 中注明"可随时改，AI 从对话中观察到实际方向也会顺手更新"。占位符只剩：
 
-- `{{RESEARCH_FIELDS}}` 研究方向（默认：AI/ML）
 - `{{PYTHON312}}` 上一步解释器绝对路径
+- `{{ENV_MODE}}` 第 1 步选定的 lite/full（供恢复模式沿用）
 
 流程规则不写进 AGENTS——它们在本技能包命令里，单一来源。
 
