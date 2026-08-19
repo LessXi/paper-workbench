@@ -51,7 +51,7 @@ bash install.sh          # Windows 用: powershell -ExecutionPolicy Bypass -File
 ## 依赖
 
 - **必需**：[uv](https://docs.astral.sh/uv/)（Python 3.12 自动管理）
-- **增强**：arxiv-mcp-server + paper-search-mcp（/paper-init 自动写入工作区 MCP 配置；无 MCP 环境自动降级为网页检索 + curl 直拉）；Obsidian（工作区本身就是 vault，笔记/PDF/图全量走 Obsidian Sync 同步，设置里排除 `tools/` 即可）
+- **增强**：arxiv-mcp-server + paper-search-mcp（/paper-init 自动写入工作区 MCP 配置；无 MCP 环境自动降级为网页检索 + curl 直拉）；Obsidian（工作区本身就是 vault——明面全是论文数据，Obsidian Sync 直接全同步；框架收在 `.zcode/` 点目录，Obsidian 不碰，无需手动排除）
 - 解析：MinerU（公式/表格/中文最强，CPU 可跑）+ pypdf 快速兜底
 
 多机环境坑（杀软拦 uv trampoline、uvx 默认 Python、mineru 漏 six 等）已沉淀在 [skills/paper-lab/references/environment-notes.md](skills/paper-lab/references/environment-notes.md)，安装脚本内置规避。

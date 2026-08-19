@@ -10,7 +10,7 @@ argument-hint: <library目录名 | 论文关键词 | arXiv ID>
 ## 1. 解析（若 paper.md 不存在）
 
 ```bash
-tools/.venv/Scripts/python tools/parse_paper.py "library/<目录>/paper.pdf"
+.zcode/tools/.venv/Scripts/python .zcode/tools/parse_paper.py "library/<目录>/paper.pdf"
 ```
 
 - 首次运行会下载模型（数百 MB），耐心等待，勿中断换方案
@@ -32,7 +32,7 @@ tools/.venv/Scripts/python tools/parse_paper.py "library/<目录>/paper.pdf"
 
 ## 3. 产出精读笔记（文件名 = 论文标题.md）
 
-按 `templates/精读笔记模板.md` 写 `library/<目录>/<论文标题>.md`。要求：
+按 `.zcode/templates/精读笔记模板.md` 写 `library/<目录>/<论文标题>.md`。要求：
 
 - 公式用 LaTeX 块，标注维度
 - 关键图表链接 `images/` 相对路径

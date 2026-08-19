@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# paper-workbench 解析工具链安装：在工作区 tools/ 下建独立 venv
+# paper-workbench 解析工具链安装：在工作区 .zcode/tools/ 下建独立 venv（点目录，Obsidian 不同步）
 # 用法: bash setup_env.sh [--full|--lite] [--dir <工作区>]
 #   --full  默认。mineru[pipeline]（公式/表格级解析，模型首次运行时下载）
 #   --lite  秒级安装，仅 fast 引擎（pypdf 纯文本抽取）
@@ -17,7 +17,8 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
-TOOLS="$DIR/tools"
+mkdir -p "$DIR/.zcode"
+TOOLS="$DIR/.zcode/tools"
 VENV="$TOOLS/.venv"
 SRC="$(cd "$(dirname "$0")" && pwd)"
 
@@ -27,7 +28,6 @@ command -v uv >/dev/null 2>&1 || { echo "[setup] 缺少 uv，请先安装：http
 PY="$(uv python find 3.12 2>/dev/null || { echo "[setup] 安装 Python 3.12 ..."; uv python install 3.12 >/dev/null; uv python find 3.12; })"
 echo "[setup] Python 3.12: $PY"
 
-mkdir -p "$TOOLS"
 # 标准库 venv + pip：规避部分机器杀软拦截 uv trampoline exe 的问题（见 references/environment-notes.md）
 "$PY" -m venv "$VENV"
 

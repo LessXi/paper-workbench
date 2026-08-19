@@ -34,7 +34,7 @@ metadata:
 ## 核心约定（所有流程共享）
 
 1. **两套精读模式**：学习模式（用户读用户写，AI 只陪读/出题/code review，红线见 paper-learn.md）vs 代读模式（AI 三遍读法：概览→精读→批判）。核心论文用前者，批量筛选用后者。
-2. **解析双引擎**：MinerU（公式/表格最强，首次运行下载模型慢）+ fast 兜底（pypdf 秒级）；封装为工作区 `tools/parse_paper.py`（由 /paper-init 安装）。
+2. **解析双引擎**：MinerU（公式/表格最强，首次运行下载模型慢）+ fast 兜底（pypdf 秒级）；封装为工作区 `.zcode/tools/parse_paper.py`（由 /paper-init 安装）。
 3. **台账驱动**：`registry.md` 唯一状态源，流转 inbox→待读→在读→已读→复现中→已复现。
 4. **复现分级**：官方 repo → 降规模（小数据/推理模式/小模型）→ 从零实现 → 代码走读；数量级一致即成功。
 5. **工作区即 Obsidian 仓库**：精读笔记 `library/<论文>/<论文标题>.md` 是单一数据源（文件名 = 论文标题，wikilink 友好），git 管版本、Obsidian Sync 跨设备同步（Sync 排除 `tools/`）；概念沉淀 `概念卡/`，不双写副本。

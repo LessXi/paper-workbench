@@ -6,7 +6,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$Tools = Join-Path $Dir "tools"
+$Tools = Join-Path $Dir ".zcode	ools"
 $Venv  = Join-Path $Tools ".venv"
 $Src   = $PSScriptRoot
 
