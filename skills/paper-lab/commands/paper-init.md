@@ -3,11 +3,23 @@ description: 一键把当前（或指定）目录初始化为论文工作台：�
 argument-hint: [目标目录，默认当前目录] [--lite 轻量环境] [--no-vault 不启用 Obsidian]
 ---
 
-# /paper-init：初始化论文工作台
+# /paper-init：初始化 / 恢复论文工作台
 
 分层原则：**数据走同步（Obsidian Sync），框架走 GitHub（本技能包仓库）**。工作区里只放论文相关数据；框架在工作区的唯一落点是 `.zcode/` 点目录（Obsidian 不碰点开头目录，天然隔离；斜杠命令装在用户级，不进工作区，避免遮蔽/漂移）。
 
-## 1. 确认目标
+## 0. 模式判断（先做）
+
+目标目录已有 `registry.md` 且 `library/` 里有论文目录 → **恢复模式**（工作区数据已由 Obsidian Sync 带到本机）：
+
+1. 跳过第 2/4/5 步的数据脚手架（AGENTS.md、registry、概念卡均已同步，只读不改）
+2. 只重建框架层：执行第 3 步（Python 3.12 检测）与第 6 步（.zcode/tools 环境）与第 7 步（MCP 配置）
+3. git 接续（若本机无 `.git`）：`git init`；若用户提供私有远端 URL：`git remote add origin <url> && git fetch && git reset --mixed origin/main`（采纳远端历史，不动工作区文件）
+4. 校验：对照 registry.md 逐条检查 library/ 目录与笔记在不在、PDF 是否已同步完（Obsidian Sync 大文件后到，缺 PDF 属正常，等同步即可）；汇报缺口
+5. Obsidian：提示「打开文件夹作为仓库」（若本机尚未注册）
+
+否则 → 初始化模式，走以下流程。
+
+## 1. 确认目标（初始化模式）
 
 - 目录默认当前目录；非空时列出已有内容并**征得确认**才继续（只新增不覆盖同名文件，遇同名先问）
 - 参数：`--lite` 装轻量解析环境（秒级，仅 fast 引擎）；默认 `--full`（含 MinerU，模型首次解析时下载）
