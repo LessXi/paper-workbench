@@ -13,7 +13,15 @@ find   read   parse  learn  vault  repro  survey
 
 **方式一：插件市场（推荐，零终端）**——ZCode/Claude Code：设置 → 插件管理 → Discover → **+** 从 GitHub 添加 `https://github.com/LessXi/paper-workbench` → 安装。装完重开会话。
 
-**方式二：一条命令（terminal 用户 / DeepSeek Harness）**
+**方式二：DSH 一条命令（bundle）**——DeepSeek Harness 用户：
+
+```sh
+dsh plugin --profile web add github:LessXi/paper-workbench   # 在 DSH 源码目录跑 pnpm dsh …，可加 #<commit> 锁定
+```
+
+装完获得 `paper` 工具（status 查工作台状态 / parse 解析 PDF）；工作流技能由 `/paper-init` 自动落到工作区 `.agents/skills/`。
+
+**方式三：一条 bootstrap 命令（其他 terminal 用户）**
 
 ```bash
 curl -LsSf https://raw.githubusercontent.com/LessXi/paper-workbench/main/bootstrap.sh | bash

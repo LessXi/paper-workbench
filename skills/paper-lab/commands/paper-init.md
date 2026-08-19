@@ -58,14 +58,16 @@ uv python find 3.12 || uv python install 3.12 && uv python find 3.12
 - **refs.bib**（注释头）、**.gitignore**（PDF/images/缓存不入库）
 - Obsidian 相关（默认开启）：根目录 `概念卡/_模板.md`、`方法图谱/`、`Papers.base`、`HOME.md`（均从 templates/ 复制）
 
-## 6. 框架层与解析环境（.zcode/tools）
+## 6. 框架层：解析环境 + 工作区技能（.zcode/ 与 .agents/）
 
 ```bash
-bash <技能包>/scripts/setup_env.sh --full|--lite --dir <工作区>     # POSIX/Git Bash
-# 或 powershell -File <技能包>/scripts/setup_env.ps1 -Mode full|lite -Dir <工作区>
+bash <技能包>/scripts/setup_env.sh --lite|--full --dir <工作区>     # POSIX/Git Bash
+# 或 powershell -File <技能包>/scripts/setup_env.ps1 -Mode lite|full -Dir <工作区>
 ```
 
 脚本自建 `.zcode/tools/`（venv + parse_paper.py + pyproject.toml，arxiv-cache 与 envs 预留于此）并自验 import；失败按 `references/environment-notes.md` 排障（常见：杀软拦 uv trampoline → 脚本已默认标准 venv + pip）。
+
+再把技能包复制到工作区：`cp -r <技能包> <工作区>/.agents/skills/paper-lab/`——DSH 的项目级技能发现根，放进去即生效；ZCode 侧用户级技能优先、不受影响；`.agents` 点目录 Obsidian 不碰。此后即使没装全局技能，任何宿主在这个工作区里都有完整流程知识。
 
 ## 7. MCP 配置（.zcode/config.json，按宿主环境）
 
