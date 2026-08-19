@@ -1,0 +1,11 @@
+{
+  "name": "paper-workbench-market",
+  "owner": { "name": "LessXi" },
+  "plugins": [
+    {
+      "name": "paper-workbench",
+      "source": "./",
+      "description": "全流程论文研读学习复现工作台：/paper-init 一键把任意目录变成论文工作台"
+    }
+  ]
+}

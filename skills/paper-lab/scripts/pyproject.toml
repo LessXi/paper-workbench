@@ -1,0 +1,11 @@
+[project]
+name = "paper-lab-tools"
+version = "0.1.0"
+description = "paper-lab 工作台解析工具链（MinerU PDF 解析 + 快速文本抽取兜底）"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "mineru[pipeline]>=2.0",
+    "pypdf>=4.0",
+    "numpy>=1.26",
+    "six>=1.16", # mineru 3.4.5 的 pytorchocr 需要但未声明
+]
