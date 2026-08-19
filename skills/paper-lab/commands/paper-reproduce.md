@@ -19,12 +19,13 @@ argument-hint: <library目录名 | 论文关键词> [复现目标，如 "Table 1
 按工作区 AGENTS.md「建环境配方」（部分机器杀软拦 uv trampoline，标准 venv + pip 最稳）：
 
 ```bash
-"<AGENTS.md 中 python312 绝对路径>" -m venv library/<目录>/reproduce/.venv   # 版本按 repo 声明换；未记录时 uv python find 3.12 查
-library/<目录>/reproduce/.venv/Scripts/python.exe -m pip install -r library/<目录>/reproduce/repo/requirements.txt
+mkdir -p tools/envs/<目录>
+"<AGENTS.md 中 python312 绝对路径>" -m venv tools/envs/<目录>/.venv   # 版本按 repo 声明换；未记录时 uv python find 3.12 查
+tools/envs/<目录>/.venv/Scripts/python.exe -m pip install -r library/<目录>/reproduce/repo/requirements.txt
 ```
 
 - 装依赖报错 → context7 查该库文档找正确版本组合；仍不行 → 降级/升级逐一试并记录
-- **红线：绝不使用系统 python；绝不装到 tools/.venv**
+- **红线：绝不使用系统 python；绝不装进解析环境 tools/.venv（复现环境一律在 tools/envs/<目录>/）**
 
 ## 3. CPU 适配跑通
 

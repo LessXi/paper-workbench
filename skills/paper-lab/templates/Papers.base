@@ -1,0 +1,47 @@
+filters:
+  and:
+    - file.inFolder("library")
+    - '标题 != null'
+
+properties:
+  状态:
+    displayName: 状态
+  评分:
+    displayName: 评分
+  领域:
+    displayName: 领域
+  年份:
+    displayName: 年份
+
+views:
+  - type: table
+    name: 全部论文
+    order:
+      - file.name
+      - 状态
+      - 领域
+      - 评分
+      - 年份
+    groupBy:
+      property: 状态
+      direction: ASC
+
+  - type: table
+    name: 待读队列
+    filters:
+      and:
+        - '状态 == "待读" || 状态 == "在读"'
+    order:
+      - file.name
+      - 评分
+      - 领域
+
+  - type: cards
+    name: 已读卡片墙
+    filters:
+      and:
+        - '状态 == "已读" || 状态 == "已复现"'
+    order:
+      - file.name
+      - 一句话总结
+      - 评分

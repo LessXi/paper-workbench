@@ -21,7 +21,7 @@ mkdir: inbox/ library/ topics/ templates/ tools/ docs/
 复制技能包资产：
 
 - `scripts/parse_paper.py`、`scripts/pyproject.toml` → `tools/`
-- `templates/精读笔记模板.md`、`templates/reproduce-log-template.md`、`templates/导读地图模板.md` → `templates/`
+- `templates/精读笔记模板.md`、`templates/reproduce-log-template.md`、`templates/导读地图模板.md`、`templates/概念卡模板.md`、`templates/Papers.base`、`templates/HOME.md` → `templates/`
 
 ## 3. 检测 Python 3.12（uv）
 
@@ -36,7 +36,6 @@ uv python find 3.12 || uv python install 3.12 && uv python find 3.12
 
 1. **AGENTS.md**：按 `templates/workspace-AGENTS.md` 渲染，替换占位符（占位符含义向用户询问，给默认值）：
    - `{{RESEARCH_FIELDS}}` 研究方向（默认：AI/ML）
-   - `{{VAULT_PATH}}` Obsidian 库绝对路径（默认：`<工作区>/../PaperVault`；`--no-vault` 则填 `无`）
    - `{{PYTHON312}}` 上一步得到的解释器绝对路径
 2. **registry.md**（模板：表头 + 状态流转说明）
 3. **refs.bib**（注释头）、**.gitignore**（PDF/images/.venv/缓存不入库）
@@ -64,12 +63,14 @@ bash <技能包>/scripts/setup_env.sh --full|--lite --dir <工作区>     # POSI
 - **Claude Code**：写 `<工作区>/.mcp.json`（同样的 servers，键名用 `mcpServers`）
 - **DSH / 无 MCP 宿主**：跳过；各命令已内置网页检索与 curl 直拉兜底
 
-## 7. Obsidian 库（默认开启）
+## 7. Obsidian 仓库（工作区即 vault，默认开启）
 
-1. 建 `{{VAULT_PATH}}` 结构：`论文笔记/`、`概念卡/`（含 `_模板.md`）、`方法图谱/`、`HOME.md`、`Papers.base`
-2. 注册：装有 Obsidian 官方 CLI 时用 CLI 注册；否则提示用户在 Obsidian 中「打开文件夹作为仓库」一次
+1. 根目录长出：`概念卡/_模板.md`（从 templates/ 复制改名）、`方法图谱/`、`Papers.base`、`HOME.md`（templates/ 复制）
+2. 注册：装有 Obsidian 官方 CLI 时用 CLI 注册本工作区目录；否则提示用户在 Obsidian 中「打开文件夹作为仓库」选择本工作区（一次性）
+3. 用户使用 Obsidian Sync 时提醒：设置 → 同步 → **排除文件夹勾选 `tools/`**（venv/模型缓存/复现环境都在其中）；`.git` 会被自动忽略
+4. `--no-vault` 跳过本步（不影响其他流程，仅失去 Obsidian 图形界面与同步）
 
 ## 8. git 与收尾
 
 1. `git init`（若尚未）+ 初始提交
-2. 汇报：创建清单 / 环境模式与验证结果 / MCP 落盘位置 / vault 路径 / 下一步建议（`/paper-find <你的第一个主题>`）
+2. 汇报：创建清单 / 环境模式与验证结果 / MCP 落盘位置 / Obsidian 仓库就绪（工作区根，如用 Sync 记得排除 tools/）/ 下一步建议（`/paper-find <你的第一个主题>`）

@@ -30,9 +30,9 @@ tools/.venv/Scripts/python tools/parse_paper.py "library/<目录>/paper.pdf"
 
 **第三遍·批判**：隐含假设 / 实验漏洞 / 可复性（开源？数据可得？算力需求？CPU 能否复现？）/ 与用户研究方向（AGENTS.md `research_fields`）的关联 / 开放问题。
 
-## 3. 产出 notes.md
+## 3. 产出精读笔记（文件名 = 论文标题.md）
 
-按 `templates/精读笔记模板.md` 写 `library/<目录>/notes.md`（母本）。要求：
+按 `templates/精读笔记模板.md` 写 `library/<目录>/<论文标题>.md`。要求：
 
 - 公式用 LaTeX 块，标注维度
 - 关键图表链接 `images/` 相对路径
@@ -41,7 +41,7 @@ tools/.venv/Scripts/python tools/parse_paper.py "library/<目录>/paper.pdf"
 ## 4. 引用与沉淀
 
 1. BibTeX 追加到 `refs.bib`（arXiv 论文用 `arxiv` MCP `export_citations`）
-2. 把 notes.md 副本直接写入 vault 的 `论文笔记/<论文名>.md`（vault 路径见工作区 AGENTS.md 的 `vault_path`；文件写入即可，Obsidian 打开后自动识别），补 wikilink（关联 `概念卡/` 与相关论文笔记；新概念建议建概念卡）。Obsidian 正在运行时可用 obsidian-cli 做搜索与反链查询
+2. 笔记已在 vault 内（工作区即 Obsidian 仓库），直接补 wikilink：[[论文标题]] 关联相关论文、[[概念名]] 关联 `概念卡/`（新概念建议建卡）。Obsidian 正在运行时可用 obsidian-cli 做搜索与反链查询
 3. `registry.md` 更新：状态`已读`、评分、摘要一句话
 
 ## 5. 汇报
