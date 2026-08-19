@@ -1,10 +1,21 @@
 {
   "name": "paper-workbench",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "全流程论文研读学习复现工作台：检索→解析→精读（代读/学习双模式）→引文→综述→追新→CPU级复现→台账管理。/paper-init 一键把任意目录变成论文工作台。",
-  "author": { "name": "LessXi" },
+  "author": {
+    "name": "LessXi"
+  },
   "license": "MIT",
-  "keywords": ["paper", "research", "reading", "learning", "reproduction", "academic", "obsidian", "arxiv"],
+  "keywords": [
+    "paper",
+    "research",
+    "reading",
+    "learning",
+    "reproduction",
+    "academic",
+    "obsidian",
+    "arxiv"
+  ],
   "commands": "./skills/paper-lab/commands",
   "skills": "./skills"
 }

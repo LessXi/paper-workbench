@@ -1,6 +1,6 @@
 {
   "name": "paper-workbench",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "DSH bundle：注册 paper 工具（论文解析/工作台状态），工作流知识见 skills/paper-lab（由 /paper-init 装入工作区 .agents/skills/）",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
